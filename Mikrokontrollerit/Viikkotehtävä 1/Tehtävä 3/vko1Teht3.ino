@@ -1,3 +1,12 @@
+/*
+Jatka ensimmäisellä luentotunnilla aloitettua esimerkkiä.
+Tee peli, missä ohjelma kysyy ensin ala- ja ylärajan lukualueelle.
+Ohjelma arpoo tämän jälkeen yhden satunnaisen luvun alarajan ja ylärajan väliin.
+Tämän jälkeen ohjelma pyytää pelaajaa arvaamaan minkä luvun ohjelma arpoi.
+Ohjelma vertaa käyttäjän antamaa lukua arpomaansa lukuun ja kertoo pelaajalle oliko arvaus liian pieni vai liian suuri
+Ohjelma päättyy, kun pelaaja arvaa oikein ja ohjelma tulostaa sarjamonitorille pelaajan arvausten lukumäärän.
+*/
+
 #include <Arduino.h>
 
 int lower, upper, rndmNumber, guess, guessAmount;
@@ -8,12 +17,11 @@ void setup() {
 
   // alustaa randomin generoinnin
   randomSeed(analogRead(0));
-
 }
 
 void tyhjenna_bufferi() {
-  while (Serial.available() != 0) {
-    char t = Serial.read();  // tyhjennetään bufferi aina parseIntin jälkeen
+  while (Serial.available() != 0) { // tyhjennetään bufferi aina parseIntin jälkeen
+    char t = Serial.read();
   }
 }
 
