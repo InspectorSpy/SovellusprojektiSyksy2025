@@ -1,12 +1,11 @@
+#include <Arduino.h>
+
 int lower, upper, rndmNumber, guess, guessAmount;
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  Serial.setTimeout(10000);
-
-  // Odottaa serial monitorin olevan valmis
-  while (!Serial) { ; }
+  Serial.setTimeout(10000); // asettaa parseIntin timeoutin 10 sekunttiin, jottä käyttäjällä on aikaa syöttää
 
   // alustaa randomin generoinnin
   randomSeed(analogRead(0));
@@ -22,7 +21,26 @@ void tyhjenna_bufferi() {
 
 void start() {
   guessAmount = 0;
-  Serial.println("- arvauspeli -");
+  Serial.println("- Guessing game -");
+  
+  /* while (true) {
+    Serial.println("lower: ");
+    while (Serial.available() == 0) {}
+    lower = (int)Serial.parseInt();
+    tyhjenna_bufferi();
+
+    Serial.println("upper: ");
+    while (Serial.available() == 0) {}
+    upper = (int)Serial.parseInt();
+    tyhjenna_bufferi();
+
+    if (lower >= upper) {
+      Serial.println("Error, try again");
+      continue;
+    }
+    break;
+  } */
+
   Serial.println("lower: ");
 
   // Oottaa alarajaa
@@ -41,8 +59,8 @@ void start() {
 
   // Tarkistaa että arvaus on ylä ja alarajan sisällä
   if (lower >= upper) {
-    Serial.println("error"); // no working
-    start();
+    Serial.println("error");  // Tämä ei toimi, mutta periaatteessa ei ole tarvetta.
+    start();                  // Jos käyttäjä syöttää annettujen rajojen ulkopuolella olevan luvun, palauttaa ohjelma "liian iso" tai "liian pieni" vastauksen.
     return;
   }
 
@@ -87,9 +105,9 @@ void loop() {
 
     // Tarkistaa arvauksen arvottuun lukuun
     if (guess < rndmNumber) {
-      Serial.println("2 small, try again");
+      Serial.println("2 small, try again"); // Jos luku liian pieni, tulostaa tämän
     } else if (guess > rndmNumber) {
-      Serial.println("2 big, try again");
+      Serial.println("2 big, try again"); // Jos luku liian suuri, tulostaa tämän
     } else {
 
       // Print tämä jos oikea vastaus
