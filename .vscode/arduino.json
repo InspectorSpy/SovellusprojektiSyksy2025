@@ -1,5 +1,5 @@
 {
     "board": "arduino:avr:uno",
     "port": "/dev/ttyUSB0",
-    "sketch": "Mikrokontrollerit/Viikkotehtävä 1/Tehtävä 3/sketch_oct29a/sketch_oct29a.ino"
+    "sketch": "Mikrokontrollerit/Viikkotehtävä 2/Tehtävä3/Teht3.ino"
 }

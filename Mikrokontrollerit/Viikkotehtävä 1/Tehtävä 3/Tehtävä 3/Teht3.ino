@@ -3,14 +3,12 @@
 int lower, upper, rndmNumber, guess, guessAmount;
 
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(9600);
   Serial.setTimeout(10000); // asettaa parseIntin timeoutin 10 sekunttiin, jottä käyttäjällä on aikaa syöttää
 
   // alustaa randomin generoinnin
   randomSeed(analogRead(0));
 
-  start();
 }
 
 void tyhjenna_bufferi() {
@@ -23,7 +21,7 @@ void start() {
   guessAmount = 0;
   Serial.println("- Guessing game -");
   
-  /* while (true) {
+ /* while (true) {
     Serial.println("lower: ");
     while (Serial.available() == 0) {}
     lower = (int)Serial.parseInt();
@@ -41,10 +39,10 @@ void start() {
     break;
   } */
 
-  Serial.println("lower: ");
+   Serial.println("lower: ");
 
   // Oottaa alarajaa
-  while (Serial.available() == 0) {}
+   while (Serial.available() == 0) {}
   lower = (int)Serial.parseInt();
 
   tyhjenna_bufferi();
@@ -60,9 +58,9 @@ void start() {
   // Tarkistaa että arvaus on ylä ja alarajan sisällä
   if (lower >= upper) {
     Serial.println("error");  // Tämä ei toimi, mutta periaatteessa ei ole tarvetta.
-    start();                  // Jos käyttäjä syöttää annettujen rajojen ulkopuolella olevan luvun, palauttaa ohjelma "liian iso" tai "liian pieni" vastauksen.
+                              // Jos käyttäjä syöttää annettujen rajojen ulkopuolella olevan luvun, palauttaa ohjelma "liian iso" tai "liian pieni" vastauksen.
     return;
-  }
+  } 
 
   // Arvotaan luku syötteiden väliltä
   rndmNumber = random(lower, upper + 1);
@@ -87,13 +85,36 @@ void start() {
   return result;
 } */
 
+boolean gameActive = false; // Pelin tila
+
 void loop() {
+
+  // Serial.println("DEBUG: gameActive = "); // Debuggausta varten
+
+  Serial.println(gameActive);
+
+  if (!gameActive) { // Jos peli ei oo aktiivinen, tämä aloittaa pelin
+
+    // Serial.println("DEBUG: Calling start()"); // Debuggausta varten
+
+    start(); // Kutsutaan starttia
+    gameActive = true; // Asetetaan peli aktiiviseksi
+    return;
+
+    // Serial.println("DEBUG: start() completed, gameActive set to ture"); // Debuggausta varten
+  }
+
+  // Serial.println("DEBUG: Waiting for guess..."); // Debuggausta varten
 
   tyhjenna_bufferi();
 
   // Tarkistaa käyttäjän arvauksen
   while (Serial.available() == 0) {}
     guess = Serial.parseInt();
+
+    // Serial.println("DEBUG: Received guess: "); // Debuggausta varten
+
+    Serial.println(guess);
 
     tyhjenna_bufferi();
 
@@ -105,9 +126,9 @@ void loop() {
 
     // Tarkistaa arvauksen arvottuun lukuun
     if (guess < rndmNumber) {
-      Serial.println("2 small, try again"); // Jos luku liian pieni, tulostaa tämän
+      Serial.println("Too small, try again"); // Jos luku liian pieni, tulostaa tämän
     } else if (guess > rndmNumber) {
-      Serial.println("2 big, try again"); // Jos luku liian suuri, tulostaa tämän
+      Serial.println("Too big, try again"); // Jos luku liian suuri, tulostaa tämän
     } else {
 
       // Print tämä jos oikea vastaus
@@ -117,7 +138,8 @@ void loop() {
       Serial.println(" tries");
 
       // Aloittaa pelin uudelleen
-      start();
+      gameActive = false; // Peli asettuu epäaktiiviseksi, jolloin loop kutsuu starttia uudelleen
+      
     }
   }
 }
