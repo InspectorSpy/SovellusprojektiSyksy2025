@@ -1,7 +1,14 @@
+/*
+1. Tee Arduino ohjelma, joka kasvattaa muuttujan arvoa yhdellä, kun arduinon pinniin 2 kytkettyä nappia painetaan ja kasvattaa muuttujan arvoa kymmenellä, kun arduinon pinniin 3 kytkettyä nappia painetaan. Pääohjelma (loop) tulostaa viiden sekunnin välein  muuttujan arvon sarjamonitorille, ja nollaa muuttujan. (muista volatile!)
+
+2. Tee Arduino ohjelma, joka hyödyntää PinChange keskeytyksiä. Valitaan 8 bitin väylästä aktiiviseksi 5 pinniä ja keskeytyspalvelijan tulee tulostaa hyppylangalla maadoitettaessa keskeyttävän pinnin numero. Tehtävää helpottamaan on laitettu tunnilla läpikäyty esimerkkikoodi
+
+3. (VAPAAEHTOINEN EXTRA TEHTÄVÄ): Tee pelin aihio. Peli käynnistyy lähettämällä sarjaporttiin merkki 's'. Pelin ollessa käynnissä ohjelma arpoo kahden sekunnin välein numeron 1,2,3 tai 4 ja tulostaa sen kometoriville. Käyttäjän tulee kytkeä numeroa vastaava pinni maahan ennen kuin seuraava numero arvotaan. Peli jatkuu kunnes käyttäjä kytkee väärän pinnin, tai ei ehdi ajoissa. Lopuksi tulostetaan kometoriville onnnistuneiden painallusten määrä. Pelin voi aloittaa alusta kirjoittamalla uudenstaan merkki 's' sarjaporttiin.
+*/
+
+#include <Arduino.h>
+
 volatile int pcint0PinLow = 0;
-
-
-
 
 void setup() {
   for(int i = 8;i<14;i++)
