@@ -16,8 +16,8 @@ void setup() {
 
   PCICR = 0x01;               // aktivoidaan PCINT0 Portti B antaa vain keskeytyksiä portit C ja D disabloituina 
   //PCICR = B00000001;
-  PCMSK0 = B00000011;         // 0x03;  // Enable pins 8 an 9
-
+  PCMSK0 = B00011111;         // 0x03;  // Enable pins 8 an 9
+    // Muutettu PCMSK0, jotta pinnit 8-12 ovat käytössä
 
   Serial.begin(9600);
   interrupts();               // Keskeytykset enabloituna CPU:sta.
@@ -35,7 +35,7 @@ void loop() {
 
 ISR(PCINT0_vect) {
   // Joku pinneista D8 - D13 on muuttanut tilaansa 1:sta 0 tai 0 ykkoseen selvitetaan mika pinni
-  for(int i = 8;i<10;i++)
+  for(int i = 8;i<12;i++) // Vaihdettu loppuarvo 12
   {
     byte luettu = digitalRead(i);
     
