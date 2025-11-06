@@ -17,6 +17,14 @@ float analogCompare(int analogPin) {
         case 5: arduinoPin = A5; break;
         default: return 0.0; // Jos pinni on väärä, palauttaa monitoriin 0.0
     }
+
+    int refValue = analogRead(A0);         // Referenssijännite pinnistä A0
+    int pinValue = analogRead(arduinoPin); // Jännite valitusta pinnistä
+
+    float refVoltage = refValue * (5.0 / 1023.0); // Muunnetaan ADC-arvot volteiksi (0-1023 -> 0-5V)
+    float pinVoltage = pinValue * (5.0 / 1023.0);
+
+    return refVoltage - pinVoltage; // Palautetaan jännitteiden erotus
 }
 
 void setup() {
