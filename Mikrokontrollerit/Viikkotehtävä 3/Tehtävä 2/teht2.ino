@@ -35,7 +35,7 @@ void loop() {
 
 ISR(PCINT0_vect) {
   // Joku pinneista D8 - D13 on muuttanut tilaansa 1:sta 0 tai 0 ykkoseen selvitetaan mika pinni
-  for(int i = 8;i<12;i++) // Vaihdettu loppuarvo 12
+  for(int i = 8;i<13;i++) // Vaihdettu loppuarvo 12
   {
     byte luettu = digitalRead(i);
     
