@@ -1,7 +1,9 @@
 /*
-1. Tee Arduino ohjelma, joka kasvattaa muuttujan arvoa yhdellä, kun arduinon pinniin 2 kytkettyä nappia painetaan ja kasvattaa muuttujan arvoa kymmenellä, kun arduinon pinniin 3 kytkettyä nappia painetaan.
-Pääohjelma (loop) tulostaa viiden sekunnin välein  muuttujan arvon sarjamonitorille, ja nollaa muuttujan. (muista volatile!)
-
+1. Tee Arduino ohjelma, joka kasvattaa muuttujan arvoa yhdellä,
+kun arduinon pinniin 2 kytkettyä nappia painetaan ja kasvattaa muuttujan arvoa kymmenellä,
+kun arduinon pinniin 3 kytkettyä nappia painetaan.
+Pääohjelma (loop) tulostaa viiden sekunnin välein  muuttujan arvon sarjamonitorille,
+ja nollaa muuttujan. (muista volatile!)
 */
 
 #include <Arduino.h>
