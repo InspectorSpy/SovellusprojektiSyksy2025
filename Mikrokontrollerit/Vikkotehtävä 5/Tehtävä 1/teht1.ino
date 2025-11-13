@@ -64,6 +64,8 @@ void loop() {
             Serial.print(" min ");
             Serial.print(seconds); // Tulostaa sekunnit
             Serial.print(" s ");
+            // Serial.print(tenths);
+            // Serial.print("");
             Serial.println();
             lastPrintTime = currentTime; // Päivittää tulostusajan
         }
