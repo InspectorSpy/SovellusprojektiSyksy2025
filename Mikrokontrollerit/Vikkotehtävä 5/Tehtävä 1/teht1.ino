@@ -64,8 +64,6 @@ void loop() {
             Serial.print(" min ");
             Serial.print(seconds); // Tulostaa sekunnit
             Serial.print(" s ");
-            // Serial.print(tenths);
-            // Serial.print("");
             Serial.println();
             lastPrintTime = currentTime; // Päivittää tulostusajan
         }
@@ -86,7 +84,6 @@ void loop() {
             minutes = 0; // Nollaa minuutit
 
             Serial.println("Paina pinniä 2 käynnistääksesi uudelleen");
-            // delay(500);
         }
     }
 }
