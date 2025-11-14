@@ -37,7 +37,7 @@ void loop()
      // and corresponding let must be activated
      newTimerInterrupt = false; // reset var lisätty
   }
-  else{
+  else {
     // älä tee mitään, oota keskeytystä: Lisätty
   }
 }
